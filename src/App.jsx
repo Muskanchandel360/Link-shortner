@@ -1,24 +1,19 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Form from './components/Form'
-import LinkContainer from './components/LinkContainer'
-import { LinkProvider } from './context/LinkContext'
+import React from "react";
+import Navbar from "./components/Navbar";
+import Form from "./components/Form";
+import LinkContainer from "./components/LinkContainer";
+import { LinkProvider } from "./context/LinkContext";
 
 const App = () => {
   return (
     <LinkProvider>
-        <Navbar/>
+      <Navbar />
+      <div className="py-36 min-h-screen bg-slate-900 flex flex-col space-y-10 items-center justify-center">
+        <Form />
+        <LinkContainer />
+      </div>
+    </LinkProvider>
+  );
+};
 
-<div className=' p-8 md:p-24 py-48 md:py-56 bg-gradient-to-r from-slate-900 to-slate-700 min-h-screen flex items-center justify-center flex-col space-y-10'>
-
-<Form/>
-<LinkContainer/>
-
-
-</div>
-</LinkProvider>
-  )
-}
-
-export default App
-
+export default App;

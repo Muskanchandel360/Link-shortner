@@ -1,27 +1,51 @@
-import React, { useState } from 'react'
-import { fetchURL } from '../context/LinkService'
+import React, { useContext, useState } from "react";
+import { fetchURL } from "../context/LinkService";
+import LinkContext from "../context/LinkContext";
 
 const Form = () => {
-  const [text , setText] = useState("")
+  const { dispatch } = useContext(LinkContext);
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    fetchURL(text)
-    setText("")
-  }
+  const [text, setText] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Fetch Short URL
+    const shortUrlData = await fetchURL(text);
+
+    // Set URL in state
+    dispatch({
+      type: "SHORT_URL",
+      payload: {
+        id: crypto.randomUUID(),
+        originalURL: text,
+        ...shortUrlData,
+      },
+    });
+
+    setText("");
+  };
+
   return (
     <>
-        <h1 className='text-3xl md:text-5xl font-black  text-white text-center'>Short Your URL's</h1>
-  <form  onSubmit= {handleSubmit} className='w-full'>
-    <input  onChange = {e => setText(e.target.value)} value = {text} type="text" placeholder='Enter Your URL' className='p-5 rounded-l-lg w-3/4' />
-    <button className='bg-green-700 p-5 rounded-r-lg w-1/4 hover:bg-green-900 duration-150'>
-      <p className=' font-black text-white uppercase'>Short
-         </p>
-    </button>
-  </form>
+      <h1 className="text-white font-black text-3xl md:text-5xl md:max-w-lg text-center max-w-sm">
+        Shorten Your Big URL With Our Tool
+      </h1>
 
+      <form className="my-3 w-3/4" onSubmit={handleSubmit}>
+        <input
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          type="text"
+          placeholder="Enter URL"
+          className="p-4 rounded-l-md w-3/4 focus:outline-none"
+        />
+        <button className="p-4 rounded-r-md w-1/4 bg-green-700 ">
+          <p className="text-white font-extrabold tracking-wider"> Shorten</p>
+        </button>
+      </form>
     </>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;

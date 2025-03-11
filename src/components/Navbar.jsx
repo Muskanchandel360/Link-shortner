@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 
 const Navbar = () => {
   return (
-    <nav className=' fixed w-full bg-gradient-to-r from-slate-900 to-slate-700 shadow-2xl flex items-center justify-between px-10 py-3'>
-      <h1 className='text-lg text-white font-black uppercase'>Shortly</h1>
-      <button className='bg-blue-600 px-3 py-0.5 rounded-md'>
-        <p className='text-sm font-bold text-white'>V1.0</p>
+    <nav className="fixed w-full shadow-2xl bg-slate-800 py-3 px-10 flex items-center justify-between">
+      <h1 className="text-white font-bold uppercase text-xl">Shorty</h1>
+      <button className="bg-blue-400 rounded-sm py-1 px-4">
+        <p className="text-sm font-bold text-white">v.0</p>
       </button>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
